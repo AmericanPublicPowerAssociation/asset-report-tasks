@@ -1,0 +1,33 @@
+# vim
+*.sw[op]
+*~
+# node
+.env
+.reify-cache
+node_modules
+npm-debug.log*
+nvd*.json
+package-lock.json
+yarn.lock
+# python
+*.egg
+*.egg-info
+*.py[co]
+.cache
+.coverage
+.ipynb_checkpoints
+.pytest_cache
+__pycache__
+build
+dist
+alembic
+# sqlite
+*.sqlite
+*.sqlite-journal
+# transient
+*.log
+*.map
+*.out
+*.tmp
+.DS_Store
+data_*
