@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: asset-report-tasks
+Version: 0.1
+Summary: Tasks Report for Asset Tracker
+Home-page: https://crosscompute.com
+Author: CrossCompute Inc.
+Author-email: support@crosscompute.com
+License: UNKNOWN
+Description: 
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Description-Content-Type: text/markdown
+Provides-Extra: testing
