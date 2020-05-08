@@ -2,8 +2,11 @@ from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import (
     String, UnicodeText)
-from asset_tracker.models.meta import (
-    Base, ModificationMixin, CreationMixin, RecordMixin)
+from invisibleroads_records.models import (
+    Base,
+    ModificationMixin,
+    CreationMixin,
+    RecordMixin)
 
 
 class Comment(ModificationMixin, CreationMixin, RecordMixin, Base):
