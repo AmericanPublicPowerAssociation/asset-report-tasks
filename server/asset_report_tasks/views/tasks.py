@@ -1,7 +1,7 @@
 from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound
 from pyramid.view import view_config
 
-from asset_tracker.models.assets import Asset
+from asset_tracker.models.asset import Asset
 from asset_tracker.exceptions import DataValidationError
 
 from ..models import Task, TaskStatus, TaskPriority

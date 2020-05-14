@@ -1,10 +1,13 @@
 import enum
+from invisibleroads_records.models import (
+    Base,
+    ModificationMixin,
+    CreationMixin,
+    RecordMixin)
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy.types import (
     String, Unicode, Enum)
-from asset_tracker.models.meta import (
-    Base, ModificationMixin, CreationMixin, RecordMixin)
 
 
 class TaskStatus(enum.Enum):
