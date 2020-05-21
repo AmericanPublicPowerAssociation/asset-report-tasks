@@ -74,8 +74,10 @@ def change_task_json(request):
     if 'assignmentUserId' in params:
         task.assignment_user_id = params['assignmentUserId']
     try:
-        task.status = get_task_status_code(params)
-        task.priority = get_task_priority_code(params)
+        if 'status' in params:
+            task.status = get_task_status_code(params)
+        if 'priority' in params:
+            task.priority = get_task_priority_code(params)
     except DataValidationError as e:
         raise HTTPBadRequest(e.args[0])
     db.add(task)
