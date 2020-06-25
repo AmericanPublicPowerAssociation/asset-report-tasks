@@ -28,8 +28,7 @@ def see_tasks_json(request):
     route_name='tasks.json',
     renderer='json',
     request_method='POST')
-# TODO: Rename to add_task_json
-def add_tasks_json(request):
+def add_task_json(request):
     db = request.db
     params = request.json_body
     try:
