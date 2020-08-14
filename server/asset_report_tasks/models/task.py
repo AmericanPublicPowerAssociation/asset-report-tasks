@@ -45,7 +45,7 @@ class Task(ModificationMixin, CreationMixin, RecordMixin, Base):
         utility_ids = get_utility_ids(session, ROLE_SPECTATOR)
         query = db.query(Class).join(Task.asset).filter(
             Asset.utility_id.in_(utility_ids),
-            not Asset.is_deleted)
+            Asset.is_deleted == False)  # noqa: E712
         return query
 
     def get_json_dictionary(self):
