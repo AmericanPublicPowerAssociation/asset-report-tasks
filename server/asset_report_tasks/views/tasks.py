@@ -4,9 +4,14 @@ from pyramid.view import view_config
 from asset_tracker.models.asset import Asset
 from asset_tracker.exceptions import DataValidationError
 
-from ..models import Task, TaskStatus, TaskPriority
-from ..routines import (get_task_priority_code, get_task_status_code,
-                        get_enum_json_dictionary, get_viewable_tasks)
+from ..models import (
+    Task,
+    TaskPriority,
+    TaskStatus)
+from ..routines import (
+    get_enum_json_dictionary,
+    get_task_priority_code,
+    get_task_status_code)
 
 
 @view_config(
@@ -14,9 +19,7 @@ from ..routines import (get_task_priority_code, get_task_status_code,
     renderer='json',
     request_method='GET')
 def see_tasks_json(request):
-    db = request.db
-    # TODO: Get tasks for which user has view privileges
-    tasks = get_viewable_tasks(db)
+    tasks = Task.get_viewable_query(request).all()
     return {
         'taskPriorityTypes': get_enum_json_dictionary(TaskPriority),
         'taskStatusTypes': get_enum_json_dictionary(TaskStatus),

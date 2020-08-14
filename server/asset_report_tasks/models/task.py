@@ -1,4 +1,6 @@
 import enum
+from appa_auth_consumer.constants import ROLE_SPECTATOR
+from asset_tracker.models import Asset
 from invisibleroads_records.models import (
     Base,
     ModificationMixin,
@@ -34,6 +36,18 @@ class Task(ModificationMixin, CreationMixin, RecordMixin, Base):
     asset = relationship('Asset', backref='tasks')
     # comments = relationship('Comment', backref='task')
     reference_uri = Column(String)
+
+    @classmethod
+    def get_viewable_query(Class, request):
+        db = request.db
+        session = request.session
+        utilities = session.get('utilities', [])
+        utility_ids = [
+            _['id'] for _ in utilities if _['role'] >= ROLE_SPECTATOR]
+        query = db.query(Class).join(Task.asset).filter(
+            Asset.utility_id.in_(utility_ids),
+            not Asset.is_deleted)
+        return query
 
     def get_json_dictionary(self):
         return {

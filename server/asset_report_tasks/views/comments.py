@@ -1,8 +1,7 @@
 from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound
 from pyramid.view import view_config
 
-from ..models.comments import Comment
-from ..models.tasks import Task
+from ..models import Comment, Task
 
 
 @view_config(

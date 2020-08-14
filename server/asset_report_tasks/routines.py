@@ -1,6 +1,6 @@
 from asset_tracker.exceptions import DataValidationError
 
-from .models.tasks import Task, TaskPriority, TaskStatus
+from .models import TaskPriority, TaskStatus
 
 
 def get_task_priority_code(task_dictionary):
@@ -27,10 +27,6 @@ def get_task_status_code(task_dictionary):
     except ValueError:
         raise DataValidationError({'status': 'is invalid'})
     return task_status_code
-
-
-def get_viewable_tasks(database):
-    return database.query(Task).join(Task.asset).filter_by(is_deleted=False)
 
 
 def get_enum_json_dictionary(enum):
