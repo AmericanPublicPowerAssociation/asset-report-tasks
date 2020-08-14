@@ -1,6 +1,7 @@
 import enum
 from appa_auth_consumer.constants import ROLE_SPECTATOR
 from asset_tracker.models import Asset
+from asset_tracker.routines import get_utility_ids
 from invisibleroads_records.models import (
     Base,
     ModificationMixin,
@@ -41,9 +42,7 @@ class Task(ModificationMixin, CreationMixin, RecordMixin, Base):
     def get_viewable_query(Class, request):
         db = request.db
         session = request.session
-        utilities = session.get('utilities', [])
-        utility_ids = [
-            _['id'] for _ in utilities if _['role'] >= ROLE_SPECTATOR]
+        utility_ids = get_utility_ids(session, ROLE_SPECTATOR)
         query = db.query(Class).join(Task.asset).filter(
             Asset.utility_id.in_(utility_ids),
             not Asset.is_deleted)
